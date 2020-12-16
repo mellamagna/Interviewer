@@ -1,14 +1,44 @@
 [
 	{
 		"id": 1,
-		"question": "Is this a test question?",
-		"checks": ["yes", "test"],
-		"answer": "**Yes**, this is a **test** question."
+		"question": "What is Object Oriented Programming?",
+		"checks": ["programming", "paradigm", "pattern", "object"],
+		"answer": "OOP is a programming paradigm centered around the idea of 'objects' containing both data and code that interact with one another."
 	},
 	{
 		"id": 2,
-		"question": "Is this another test question?",
-		"checks": ["yes", "another", "test"],
-		"answer": "**Yes**, this is **another test** question."
+		"question": "What is a class and what is an object?",
+		"checks": ["blueprint", "instance", "outline", "class", "object"],
+		"answer": "A class is the 'blueprint' of an object and outlines its structure. An object is an instance of said class."
+	},
+	{
+		"id": 3,
+		"question": "What is inheritance?",
+		"checks": ["inheritance","child","parent"],
+		"answer": "Inheritance is the idea of a child class being based upon (or inheriting properties of) its parent object. Features common to all child classes are within the parent class."
+	},
+	{
+		"id": 4,
+		"question": "What is abstraction?",
+		"checks": ["abstraction","data","hiding"],
+		"answer": "Abstraction is a concept that involves 'data hiding' where only relevant code is displayed and is layered so that it is protected."
+	},
+	{
+		"id": 5,
+		"question": "What is polymorphism?",
+		"checks": ["polymorphism","many","forms","types"],
+		"answer": "Polymorphism is the idea that one object can take many forms, or that an interface can be provided to entities of many different types."
+	},
+	{
+		"id": 6,
+		"question": "What is encapsulation?",
+		"checks": ["encapsulation","data","group","surround"],
+		"answer": "Encapsulation is a principle of OOP that involves 'data grouping', limiting the scope of functions and surrounding them within blocks of code."
+	},
+	{
+		"id": 7,
+		"question": "What is a class and what is a superclass?",
+		"checks": ["class","superclass","parent","blueprint","outline"],
+		"answer": "A class is the 'blueprint' outlining an object and its structure. A superclass is the class from which a particular object inherits. For example, the Object class is the parent class of all objects within Java."
 	}
 ]

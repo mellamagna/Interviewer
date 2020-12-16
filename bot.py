@@ -27,7 +27,7 @@ shortprefix = "!in"
 questionfile = "questions.json"
 scoreboardfile = "scoreboard.json"
 
-threshold = 0.5
+threshold = 0.4
 
 #####utility methods
 
@@ -106,7 +106,7 @@ def checkquestion(text, checks):
 	return score
 
 def checkscore(score, checks):
-	if (score / len(checks)) > threshold:
+	if (score / len(checks)) >= threshold:
 		return True
 	else:
 		return False
@@ -124,7 +124,7 @@ def write_scores():
 		json.dump(userscores, f, ensure_ascii=False, indent=4)
 
 def incr_userscore(uid):
-	if not(userscores.has_key(uid)):
+	if not(uid in userscores):
 		userscores[uid] = 1
 	else:
 		userscores[uid] += 1
@@ -204,7 +204,7 @@ async def evaluate_question(message):
 	embedVar.add_field(name="Example answer", value=q["answer"], inline=False)
 	if checkscore(score, checks):
 		newtotal = "You now have **" + str(userscores[uid]) + "** correct answer(s)!"
-		embedVar.add_field(name=random_congrats(), value=q["answer"], inline=False)
+		embedVar.add_field(name=random_congrats(), value=newtotal, inline=False)
 	await message.channel.send(content=output, embed=embedVar)
 	del(currentquestions[uid])
 
