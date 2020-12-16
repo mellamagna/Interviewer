@@ -138,13 +138,13 @@
 		"answer": "An 'is-a' relationship (inheritance) is attained when one class inherits from another."
 	},
 	{
-		"id": 23,
+		"id": 24,
 		"question": "How is a 'has-a' relationship achieved?",
 		"checks": ["composition","instance"],
 		"answer": "A 'has-a' relationship (compsition) is attained when one class contains an instance of another."
 	},
 	{
-		"id": 24,
+		"id": 25,
 		"question": "How do you create a subclass?",
 		"checks": ["extends"],
 		"answer": "A subclass is created when the `extends` keyword is used when the class is defined (e.g., class Child extends Parent)."
