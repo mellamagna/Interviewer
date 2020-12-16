@@ -62,7 +62,6 @@ def helpmsg():
 	output += "Bot prefix: !interview (short form: !in)\n"
 	output += "\n"
 	output += "!interview refresh [questions|scores] - refreshes either the questions or scoreboard from the respective JSON files\n"
-	output += "!interview resetscores - clears the user scoreboard"
 	output += "\n"
 	output += "!interview about - displays general info about this bot\n"
 	output += "!interview changelog - displays changes from last version\n"
