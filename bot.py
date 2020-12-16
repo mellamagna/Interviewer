@@ -1,5 +1,6 @@
 # bot.py
 import os
+from os import path
 
 import discord
 from discord.utils import get
@@ -19,21 +20,33 @@ discordclient = client
 
 #####config (constants)
 
-version = "1.0"
+version = "1.1"
 prefix = "!interview"
 shortprefix = "!in"
+
+questionfile = "questions.json"
+scoreboardfile = "scoreboard.json"
 
 threshold = 0.5
 
 #####utility methods
 
+def refresh_userscores():
+	if path.isfile(scoreboardfile):
+		with open(scoreboardfile) as json_file:
+			s = json.load(json_file)
+		return s
+	else:
+		return {}
+
 def refresh_questions():
-	with open("questions.json") as json_file:
+	with open(questionfile) as json_file:
 		q = json.load(json_file)
 	return q
 
 #####runtime variables
 
+userscores = refresh_userscores()
 currentquestions = {}
 questionbank = refresh_questions()
 
@@ -48,7 +61,8 @@ def helpmsg():
 	output += "\n"
 	output += "Bot prefix: !interview (short form: !in)\n"
 	output += "\n"
-	output += "!interview refresh - refreshes questions from internal 'questions.json' file (after manual replacement)\n"
+	output += "!interview refresh [questions|scores] - refreshes either the questions or scoreboard from the respective JSON files\n"
+	output += "!interview resetscores - clears the user scoreboard"
 	output += "\n"
 	output += "!interview about - displays general info about this bot\n"
 	output += "!interview changelog - displays changes from last version\n"
@@ -97,10 +111,24 @@ def checkscore(score, checks):
 	else:
 		return False
 
-def random_response():
+def random_congrats():
 	words = []
 	words.append("Good!")
+	words.append("Excellent!")
+	words.append("Nice job!")
+	words.append("Great work!")
 	return words[random.randint(0,len(words) - 1)]
+
+def write_scores():
+	with open(scoreboardfile, 'w', encoding='utf-8') as f:
+		json.dump(userscores, f, ensure_ascii=False, indent=4)
+
+def incr_userscore(uid):
+	if not(userscores.has_key(uid)):
+		userscores[uid] = 1
+	else:
+		userscores[uid] += 1
+	write_scores()
 
 #####emoji arrays
 
@@ -164,6 +192,7 @@ async def evaluate_question(message):
 	output = "<@" + str(uid) + ">, your answer is:"
 	if checkscore(score, checks):
 		await add_reaction_array(message, emojiarrayyes())
+		incr_userscore(uid)
 		cardTitle = "Likely Correct"
 		colorVar = 0x42f554
 	else:
@@ -173,6 +202,9 @@ async def evaluate_question(message):
 	desc = "(" + str(score) + "/" + str(len(checks)) + " keywords matched)"
 	embedVar = discord.Embed(title=cardTitle, description=desc, color=colorVar)
 	embedVar.add_field(name="Example answer", value=q["answer"], inline=False)
+	if checkscore(score, checks):
+		newtotal = "You now have **" + str(userscores[uid]) + "** correct answer(s)!"
+		embedVar.add_field(name=random_congrats(), value=q["answer"], inline=False)
 	await message.channel.send(content=output, embed=embedVar)
 	del(currentquestions[uid])
 
@@ -196,8 +228,17 @@ async def on_message(message):
 				elif command == "help":
 					await message.channel.send(helpmsg())
 				elif command == "refresh":
-					questionbank = refresh_questions()
-					await message.channel.send("Questions successfully loaded from the data file.")
+					if args[0] == "questions":
+						questionbank = refresh_questions()
+						await message.channel.send("Questions successfully refreshed from `" + questionfile + "`")
+					elif args[0] == "scores":
+						userscores = refresh_scores()
+						await message.channel.send("User scores successfully refreshed from `" + scoreboardfile + "`")
+					else:
+						await message.channel.send(invinput())
+				elif command == "resetscores":
+					userscores = {}
+					await message.channel.send("User scores successfully reset.")
 				else:
 					await message.channel.send(invinput())
 			except ValueError:
