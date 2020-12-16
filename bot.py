@@ -124,11 +124,14 @@ def write_scores():
 		json.dump(userscores, f, ensure_ascii=False, indent=4)
 
 def incr_userscore(uid):
-	if not(uid in userscores):
-		userscores[uid] = 1
+	if not(str(uid) in userscores):
+		userscores[str(uid)] = 1
 	else:
-		userscores[uid] += 1
+		userscores[str(uid)] += 1
 	write_scores()
+
+def get_userscore(uid):
+	return userscores[str(uid)]
 
 #####emoji arrays
 
@@ -203,7 +206,7 @@ async def evaluate_question(message):
 	embedVar = discord.Embed(title=cardTitle, description=desc, color=colorVar)
 	embedVar.add_field(name="Example answer", value=q["answer"], inline=False)
 	if checkscore(score, checks):
-		newtotal = "You now have **" + str(userscores[uid]) + "** correct answer(s)!"
+		newtotal = "You now have **" + str(get_userscore(uid)) + "** correct answer(s)!"
 		embedVar.add_field(name=random_congrats(), value=newtotal, inline=False)
 	await message.channel.send(content=output, embed=embedVar)
 	del(currentquestions[uid])
@@ -214,10 +217,10 @@ async def on_message(message):
 		return
 	elif message.content.startswith(prefix) or message.content.startswith(shortprefix):
 		try:
-			if message.content.startswith(shortprefix):
-				args = message.content[len(shortprefix):len(message.content)].strip().split()
-			else:
+			if message.content.startswith(prefix):
 				args = message.content[len(prefix):len(message.content)].strip().split()
+			else:
+				args = message.content[len(shortprefix):len(message.content)].strip().split()
 			command = args[0]
 			args = args[1:len(args)]
 			try:

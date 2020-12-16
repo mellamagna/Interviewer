@@ -37,8 +37,20 @@
 	},
 	{
 		"id": 7,
-		"question": "What is a class and what is a superclass?",
-		"checks": ["class","superclass","parent","blueprint","outline"],
-		"answer": "A class is the 'blueprint' outlining an object and its structure. A superclass is the class from which a particular object inherits. For example, the Object class is the parent class of all objects within Java."
+		"question": "What are methods?",
+		"checks": ["method","collection","group","task","call"],
+		"answer": "A method is a collection of statements that perform a specific task and return a value to the caller. There are class methods and instance methods."
+	},
+	{
+		"id": 8,
+		"question": "What is method overloading?",
+		"checks": ["overload","same","name","different","parameter"],
+		"answer": "Method overloading is when multiple methods are defined with the same name but different parameters (also known as compile-time or static polymorphism)."
+	},
+	{
+		"id": 9,
+		"question": "What is method overriding?",
+		"checks": ["overrid","child","parent"],
+		"answer": "Method overriding is when a child class redefines a method defined within its parent class (also known as run-time or dynamic polymorphism)."
 	}
 ]
