@@ -50,7 +50,103 @@
 	{
 		"id": 9,
 		"question": "What is method overriding?",
-		"checks": ["overrid","child","parent"],
+		"checks": ["overrid","child","parent","defin"],
 		"answer": "Method overriding is when a child class redefines a method defined within its parent class (also known as run-time or dynamic polymorphism)."
+	},
+	{
+		"id": 10,
+		"question": "How do you call an overridden method?",
+		"checks": ["super"],
+		"answer": "If one wishes to call a method from a parent class that has already been overridden by its child class it may be called from the child class using the `super` keyword."
+	},
+	{
+		"id": 11,
+		"question": "If a class extends another class what parameters in the parent class can be seen in the child?",
+		"checks": ["public","protected"],
+		"answer": "A class may see any of the data members defined in its parent class using the `public` and `protected` keywords."
+	},
+	{
+		"id": 12,
+		"question": "What keyword is used in Java to achieve inheritance?",
+		"checks": ["extends","implements"],
+		"answer": "`extends` for a class and `implements` for an interface (but inheritance may not be achieved if the desired parent class is final)."
+	},
+	{
+		"id": 13,
+		"question": "What is a constructor?",
+		"checks": ["instance"],
+		"answer": "A constructor is a method called to create an instance of an object. (It cannot be abstract, final, or static.)"
+	},
+	{
+		"id": 14,
+		"question": "What is the purpose of using the `this` keyword?",
+		"checks": ["object","current","instance"],
+		"answer": "The `this` keyword is used when one wishes to reference the current instance’s variables, methods, etc."
+	},
+	{
+		"id": 15,
+		"question": "What is the purpose of using the `super` keyword?",
+		"checks": ["parent","super","class"],
+		"answer": "The `super` keyword is used when one wishes to reference the current object’s parent class, whether to call on its constructor or access its data members."
+	},
+	{
+		"id": 16,
+		"question": "How would you keep a class from being inherited from?",
+		"checks": ["final"],
+		"answer": "A class may not be inherited from if the class is `final`."
+	},
+	{
+		"id": 17,
+		"question": "Have you heard of the keyword `static`?",
+		"checks": ["instance"],
+		"answer": "The `static` keyword is used when one wishes for a method or variable to belong to the class itself and not a particular instance of it."
+	},
+	{
+		"id": 18,
+		"question": "How do you use the keyword `static`?",
+		"checks": ["define","declare","instance","static"],
+		"answer": "The `static` keyword is used when a variable is declared or a method is defined. A `static` block of code may also be created to be executed when the class file is loaded."
+	},
+	{
+		"id": 19,
+		"question": "What is a static method in Java?",
+		"checks": ["instance"],
+		"answer": "A static method is associated with a class and not an instance of one, and may be called without creating an instance of said class."
+	},
+	{
+		"id": 20,
+		"question": "What is an instance variable?",
+		"checks": ["instance","class","scope"],
+		"answer": "An instance variable is a variable that is tied to an instance of a class, and only exists within the scope of that object."
+	},
+	{
+		"id": 21,
+		"question": "Can you override the main method in Java?",
+		"checks": ["no","static"],
+		"answer": "The main method is static and may not be overridden."
+	},
+	{
+		"id": 22,
+		"question": "What is the `final` keyword in Java?",
+		"checks": ["immutable","change"],
+		"answer": "The `final` keyword is used to declare methods, variables, or classes final (i.e., immutable)."
+	},
+	{
+		"id": 23,
+		"question": "How is an 'is-a' relationship achieved?",
+		"checks": ["inherit"],
+		"answer": "An 'is-a' relationship (inheritance) is attained when one class inherits from another."
+	},
+	{
+		"id": 23,
+		"question": "How is a 'has-a' relationship achieved?",
+		"checks": ["composition","instance"],
+		"answer": "A 'has-a' relationship (compsition) is attained when one class contains an instance of another."
+	},
+	{
+		"id": 24,
+		"question": "How do you create a subclass?",
+		"checks": ["extends"],
+		"answer": "A subclass is created when the `extends` keyword is used when the class is defined (e.g., class Child extends Parent)."
 	}
 ]
