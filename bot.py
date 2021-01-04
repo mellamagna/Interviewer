@@ -20,7 +20,7 @@ discordclient = client
 
 #####config (constants)
 
-version = "1.1"
+version = "1.2"
 prefix = "!interview"
 shortprefix = "!in"
 
@@ -110,7 +110,7 @@ def checkquestion(text, checks):
 	return score
 
 def checkscore(score, checks):
-	if (score / len(checks)) >= threshold_function():
+	if (score / len(checks)) >= threshold_function(len(checks)):
 		return True
 	else:
 		return False
@@ -160,6 +160,11 @@ def emojiarraybulb():
 	emojis.append('\U0001F4A1')
 	return emojis
 
+def emojiarrayrepeat():
+	emojis = []
+	emojis.append('\U0001F501')
+	return emojis
+
 #####client events
 
 @client.event
@@ -186,8 +191,7 @@ async def add_custom_reaction(message, emojiname):
 def userquestion(userid):
 	return questionbank[currentquestions[userid]]
 
-async def assign_random_question(message):
-	uid = message.author.id
+async def assign_random_question(message, uid):
 	randomquestion = random.randint(0,len(questionbank) - 1)
 	currentquestions[uid] = randomquestion
 	q = userquestion(uid)
@@ -218,7 +222,8 @@ async def evaluate_question(message):
 	if checkscore(score, checks):
 		newtotal = "You now have **" + str(get_userscore(uid)) + "** correct answer(s)!"
 		embedVar.add_field(name=random_congrats(), value=newtotal, inline=False)
-	await message.channel.send(content=output, embed=embedVar)
+	post = await message.channel.send(content=output, embed=embedVar)
+	await add_reaction_array(post, emojiarrayrepeat())
 	del(currentquestions[uid])
 
 @client.event
@@ -262,8 +267,19 @@ async def on_message(message):
 			await assign_random_question(message)
 	elif client.user.mentioned_in(message) and not(checkeveryone(message.content)):
 		print("Bot ping detected from user " + str(message.author.id))
-		await assign_random_question(message)
+		await assign_random_question(message, message.author.id)
 	elif message.author.id in currentquestions:
 		await evaluate_question(message)
+
+@client.event
+async def on_raw_reaction_add(payload):
+	channel = client.get_channel(payload.channel_id)
+	message = await channel.fetch_message(payload.message_id)
+	print("Payload emoji:" + str(payload.emoji.name))
+	if payload.user_id == client.user.id:
+		return
+	elif payload.emoji.name == "\U0001F501":
+		print("Refresh react detected")
+		await assign_random_question(message, payload.user_id)
 
 client.run(TOKEN)
