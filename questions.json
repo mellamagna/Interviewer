@@ -148,5 +148,155 @@
 		"question": "How do you create a subclass?",
 		"checks": ["extends"],
 		"answer": "A subclass is created when the `extends` keyword is used when the class is defined (e.g., class Child extends Parent)."
+	},
+	{
+		"id": 26,
+		"question": "What are primitive data types in Java?",
+		"checks": ["primitive","raw","value","object"],
+		"answer": "A primitive data type is a raw value that is not the instance of an object."
+	},
+	{
+		"id": 27,
+		"question": "What is a java bean?",
+		"checks": ["bean","object","getter","setter"],
+		"answer": "A java bean is a standard for creating an object, containing public getter and setter methods."
+	},
+	{
+		"id": 28,
+		"question": "What are wrapper classes in Java?",
+		"checks": ["primitive"],
+		"answer": "A wrapper class is an object used to contain a primitive value so that it may be treated as an object (for instance, in use with Collections)."
+	},
+	{
+		"id": 29,
+		"question": "What are the four access modifiers?",
+		"checks": ["public", "protected", "default", "private"],
+		"answer": "The four access modifiers are public, protected, default and private."
+	},
+	{
+		"id": 30,
+		"question": "What permissions does the `protected` modifier have?",
+		"checks": ["class","subclass","package"],
+		"answer": "`protected` allows access within the same class, any subclass, and anything within the same package."
+	},
+	{
+		"id": 31,
+		"question": "What permissions does the default modifier have?",
+		"checks": ["class","package"],
+		"answer": "The default modifier allows access within the same class and package only."
+	},
+	{
+		"id": 32,
+		"question": "What permissions does the `private` modifier have?",
+		"checks": ["class"],
+		"answer": "The `private` modifier only allows access within the same class."
+	},
+	{
+		"id": 33,
+		"question": "How does the `finally` keyword work?",
+		"checks": ["try","catch"],
+		"answer": "The finally keyword is used to create a block after a try-catch block, where the code within is executed after the block regardless of the outcome of the try-catch."
+	},
+	{
+		"id": 34,
+		"question": "Is there a scenario where the `finally` keyword isn’t executed?",
+		"checks": ["exit"],
+		"answer": "If the system forcefully exits or the block is exited before the finally block is reached, any code within the block is not executed."
+	},
+	{
+		"id": 35,
+		"question": "How does the `Object.finalize()` method work?",
+		"checks": ["garbage"],
+		"answer": "The `Object.finalize()` method is called when an object is being prepared for garbage collection. A subclass overrides the finalize method in order to dispose of system resources or perform other cleanup."
+	},
+	{
+		"id": 36,
+		"question": "What is an immutable class in Java, and how do you create one?",
+		"checks": ["final"],
+		"answer": "An immutable class is a class that may not be overridden, which is accomplished by declaring a class `final`."
+	},
+	{
+		"id": 37,
+		"question": "What is the most basic immutable object in Java?",
+		"checks": ["string"],
+		"answer": "The most basic immutable object is a string."
+	},
+	{
+		"id": 38,
+		"question": "What is the most basic immutable object in Java?",
+		"checks": ["string"],
+		"answer": "The most basic immutable object is a string (or a wrapper class)."
+	},
+	{
+		"id": 39,
+		"question": "Can constructors be private, and if so, why would you use one?",
+		"checks": ["singleton"],
+		"answer": "A constructor may be private and is used to create a singleton class (i.e., a class you only want one instance of)."
+	},
+	{
+		"id": 40,
+		"question": "What are some examples of loops in Java?",
+		"checks": ["for","while","do","do-while"],
+		"answer": "The three examples of loops in Java are the `for` loop (which iterates a specified number of times), the `while` loop (which executes as long as the provided condition is true), and the `do-while` loop (which behaves as a while loop but executes at least once)."
+	},
+	{
+		"id": 41,
+		"question": "How does an interface implement the concept of abstraction?",
+		"checks": ["method"],
+		"answer": "Abstraction involves “data hiding” where only relevant code is displayed, offering a layer of protection. An interface allows a user to use its methods without knowing specifically of their implementation."
+	},
+	{
+		"id": 42,
+		"question": "Explain the architecture of the JVM.",
+		"checks": ["class","memory","execution"],
+		"answer": "The JVM contains a class loader (which handles the loading of class files), the memory area (in which the methods, heap, JVM and native language stacks, and PC memory registers are all stored), and the execution engine which communicates with the native method interface to execute native code in the native method libraries."
+	},
+	{
+		"id": 43,
+		"question": "Explain how a string pool works.",
+		"checks": ["new"],
+		"answer": "If a String variable is assigned a value without using the `new` keyword, the string is placed in the “string pool”. Any subsequent string assigned that same value without using the `new` keyword is pointed to the location in memory where the string is stored. (Any string created using the `new` keyword will instead be created in the heap.)"
+	},
+	{
+		"id": 44,
+		"question": "How do you convert a string “2019-05-21” into a Date Type?",
+		"checks": ["simpledateformat"],
+		"answer": "A string is converted into a Date type by using the SimpleDateFormat object to parse the string into a Date object."
+	},
+	{
+		"id": 45,
+		"question": "What is exception handling and how do you implement it?",
+		"checks": ["try","catch"],
+		"answer": "Exception handling is the response to abnormal conditions requiring special processing in order to allow a program to continue to run. Exception handling is implemented by using try-catch blocks and correcting the unwanted behavior within the catch block."
+	},
+	{
+		"id": 46,
+		"question": "What are the different types of exceptions?",
+		"checks": ["checked","unchecked"],
+		"answer": "There are **checked** exceptions, which are checked before compiling and handled using try-catch blocks, and **unchecked** exceptions, which occur at runtime."
+	},
+	{
+		"id": 47,
+		"question": "What is serialization in Java?",
+		"checks": ["byte","file"],
+		"answer": "Serialization is a mechanism allowing objects to be represented by a sequence of bytes that may be read from and written to files."
+	},
+	{
+		"id": 48,
+		"question": "Name some Java 8 features.",
+		"checks": ["functional","lambda","reference"],
+		"answer": "Functional interfaces, lambda expressions, streams, and method references are all new features introduced to Java 8."
+	},
+	{
+		"id": 49,
+		"question": "List a few of the collections found in the Java Collections framework?",
+		"checks": ["list","set","map","iterator","generic"],
+		"answer": "Lists, Sets, Maps, (Iterators, and Generics) are a few collections found within the Java Collections framework."
+	},
+	{
+		"id": 50,
+		"question": "How do you implement a thread?",
+		"checks": ["object","runnable","interface"],
+		"answer": "A thread is implemented by either extending the Thread object or implementing the Runnable interface."
 	}
 ]

@@ -27,8 +27,6 @@ shortprefix = "!in"
 questionfile = "questions.json"
 scoreboardfile = "scoreboard.json"
 
-threshold = 0.4
-
 #####utility methods
 
 def refresh_userscores():
@@ -96,24 +94,37 @@ def invinput():
 
 #####custom actions
 
-def checkquestion(text, checks):
+def checkeveryone(text):
 	t = text.lower()
-	score = 0
-	for x in checks:
-		if re.search(x, t):
-			score += 1
-	return score
-
-def checkscore(score, checks):
-	if (score / len(checks)) >= threshold:
+	if re.search("@everyone", t) or re.search("@here", t):
 		return True
 	else:
 		return False
 
+def checkquestion(text, checks):
+	t = text.lower()
+	score = 0
+	for x in checks:
+		if re.search(r"\b{}(s)?\b".format(x), t):
+			score += 1
+	return score
+
+def checkscore(score, checks):
+	if (score / len(checks)) >= threshold_function():
+		return True
+	else:
+		return False
+
+def threshold_function(x):
+#	return 0.4
+	return 0.6 * pow(0.8, x)
+
 def random_congrats():
 	words = []
 	words.append("Good!")
+	words.append("Awesome!")
 	words.append("Excellent!")
+	words.append("Fantastic!")
 	words.append("Nice job!")
 	words.append("Great work!")
 	return words[random.randint(0,len(words) - 1)]
@@ -249,7 +260,7 @@ async def on_message(message):
 				await message.channel.send(invinput())
 		except IndexError:
 			await assign_random_question(message)
-	elif client.user.mentioned_in(message):
+	elif client.user.mentioned_in(message) and not(checkeveryone(message.content)):
 		print("Bot ping detected from user " + str(message.author.id))
 		await assign_random_question(message)
 	elif message.author.id in currentquestions:
