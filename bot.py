@@ -278,7 +278,7 @@ async def on_raw_reaction_add(payload):
 	print("Payload emoji:" + str(payload.emoji.name))
 	if payload.user_id == client.user.id:
 		return
-	elif payload.emoji.name == "\U0001F501":
+	elif payload.emoji.name == "\U0001F501" and message.author.id == client.user.id:
 		print("Refresh react detected")
 		await assign_random_question(message, payload.user_id)
 
